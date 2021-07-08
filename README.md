@@ -23,7 +23,7 @@ A NodeJS service which uses MongoDB to store user comments posted on the user's 
 ## Project Execution
 * Clone this repo on your local machine
 
-# Approach 1 (with dockers)
+## Approach 1 (with dockers)
 * Change working directory to this cloned repo directory 
 ```
 	docker build . -t <IMAGE_NAME>:<IMAGE_TAG>
@@ -37,7 +37,7 @@ A NodeJS service which uses MongoDB to store user comments posted on the user's 
 
 Note:- if we need to edit port 9000, then edit in "package.json" and expose the same in Dockerfile and use the same while launching the container.
 
-# Approach 2 (without dockers)
+## Approach 2 (without dockers)
 * Change working directory to this cloned repo directory 
 ```
 	npm install
@@ -45,3 +45,10 @@ Note:- if we need to edit port 9000, then edit in "package.json" and expose the 
 ```
 
 Note:- if we need to edit port 9000, then edit in "package.json".
+
+# Testing the APIs via Postman
+
+* For ease of testing the APIs, added postman collection JSON in the project directory itself.
+* Just import the postman collection and all the APIs can be tested.
+
+Note:- For postman, you need to udpate with server address being declared as global variable(SOC_SERVER and SOC_TOKEN are the two global variables which are getting used)

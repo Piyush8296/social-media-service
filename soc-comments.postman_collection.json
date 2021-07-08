@@ -1,0 +1,147 @@
+{
+	"variables": [],
+	"info": {
+		"name": "soc-comments",
+		"_postman_id": "348f72b2-f60e-995e-3962-13e2b9dd1f68",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get JWT Token",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/auth/generate_token",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Comment",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/comments/post_comment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SOC_TOKEN}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soc_type\":\"parent\",\n\t\"soc_wall_id\":\"123\",\n\t\"soc_metadata\":{\n\t\t\"soc_text\":\"test comment 1\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create new sub comment to an existing comment",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/comments/post_comment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SOC_TOKEN}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soc_type\":\"child\",\n\t\"soc_parent_id\":\"1f48ec58-8540-4a9c-bf31-053690cdba1c\",\n\t\"soc_wall_id\":\"123\",\n\t\"soc_metadata\":{\n\t\t\"soc_text\":\"test comment 2\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add reaction to a comment",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/comments/add_reaction",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SOC_TOKEN}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soc_id\":\"1f48ec58-8540-4a9c-bf31-053690cdba1c\",\n\t\"soc_type\":\"like\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch List of comments for a user",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/comments/list_of_comments_of_a_user",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SOC_TOKEN}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soc_id\":\"1f48ec58-8540-4a9c-bf31-053690cdba1c\",\n\t\"soc_type\":\"like\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Single Comment",
+			"request": {
+				"url": "{{SOC_SERVER}}/service/v1/social/int/comments/single_comment",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SOC_TOKEN}}",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"soc_id\":\"1f48ec58-8540-4a9c-bf31-053690cdba1c\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
