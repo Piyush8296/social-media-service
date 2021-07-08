@@ -17,6 +17,7 @@ app.use(cors());
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
+mongoose.set('useCreateIndex', true);
 
 mongoose.connect(config["DB_URL"],{poolSize:2});
 
@@ -47,7 +48,8 @@ process.on('SIGINT', function() {
 }); 
 
 var io = require('./utils/sockets').listen(app);
-var auth = require('./routes/auth');
+var comments = require('./routes/comments');
+var auth = require('./routes/user_auth');
 
 app.get('/', function (request, response) {
   console.log('App Running');
@@ -61,5 +63,6 @@ app.use(bodyParser.urlencoded({limit: '100mb', extended: true }));
 app.use(cookieParser());
 
 app.use(`${config["BASE_API_PATH"]}/auth`,auth);
+app.use(`${config["BASE_API_PATH"]}/comments`,comments);
 
 module.exports = app;
