@@ -33,4 +33,19 @@ const handle_add_comment = (req,res)=>{
     })
 }
 
-module.exports = {handle_add_comment}
+const handle_add_reaction = (req,res)=>{
+	const find_query = { "soc_id":req.body["soc_id"] }
+	const data_to_update = {
+		"$addToSet":{
+			"soc_metadata.soc_reaction": {"soc_type":req.body["soc_type"],"soc_user":req.decoded["soc_id"]}
+		}
+	}
+
+	const alt_query = {}
+
+	update_entry_in_db("adding_reaction_to_comment",Comment,find_query,data_to_update,alt_query,(response)=>{
+		res.json(response)
+	})
+}
+
+module.exports = {handle_add_comment,handle_add_reaction}

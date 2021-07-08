@@ -27,7 +27,7 @@ const comment = {
 
 /*
   Reaction sample JSON object
-  {"soc_type":"like","soc_count":1}
+  {"soc_type":"like","soc_user":""}
 */
 
 mongoose.model('Comment',new Schema(comment));
